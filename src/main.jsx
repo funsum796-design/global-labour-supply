@@ -78,7 +78,20 @@ function LanguageTranslator(){
     <div id="google_translate_element" aria-hidden="true"></div>
   </div>;
 }
-function Header(){return <header><Link to="/" className="logo"><span className="mark">✦</span><span>GLOBAL LABOUR<small>SUPPLY</small></span></Link><nav>{links.map(([x,p])=><NavLink key={x} to={p} end={p==="/"}>{x}</NavLink>)}<LanguageTranslator/><Link className="topbtn" to="/hire-labour">Request Labour →</Link></nav></header>}
+function Header(){
+const [menuOpen,setMenuOpen]=useState(false);
+const closeMenu=()=>setMenuOpen(false);
+return <header className={menuOpen?"mobile-open":""}>
+<Link to="/" className="logo" onClick={closeMenu}><span className="mark">✦</span><span>GLOBAL LABOUR<small>SUPPLY</small></span></Link>
+<button className="mobile-menu-btn" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Toggle navigation" aria-expanded={menuOpen}>
+<span></span><span></span><span></span>
+</button>
+<nav className={menuOpen?"mobile-nav-open":""}>
+{links.map(([x,p])=><NavLink key={x} to={p} end={p==="/"} onClick={closeMenu}>{x}</NavLink>)}
+<LanguageTranslator/>
+<Link className="topbtn" to="/hire-labour" onClick={closeMenu}>Request Labour →</Link>
+</nav>
+</header>}
 function Footer(){return <footer><div className="footgrid"><div><Link to="/" className="logo"><span className="mark">✦</span><span>GLOBAL LABOUR<small>SUPPLY</small></span></Link><p>Reliable workforce solutions connecting employers with capable labour for Saudi Arabia and the UAE.</p></div><div><b>Company</b><Link to="/about">About Us</Link><Link to="/services">Services</Link><Link to="/process">Our Process</Link></div><div><b>For You</b><Link to="/hire-labour">Hire Labour</Link><Link to="/workers">Workers</Link><Link to="/worker-application">Apply</Link></div><div><b>Markets</b><Link to="/saudi-arabia">Saudi Arabia</Link><Link to="/uae">UAE</Link><Link to="/workforce">Workforce</Link></div><div><b>Contact</b><p>+966 50 123 4567<br/>+971 50 123 4567<br/>info@globallaboursupply.com</p></div></div><div className="copyright">© 2026 Global Labour Supply <span>Privacy · Terms · Compliance</span></div></footer>}
 function ScrollToTop(){
   const {pathname} = useLocation();

@@ -1,0 +1,12 @@
+{
+  "name":"global-labour-supply-exact-ui",
+  "private":true,
+  "version":"1.0.0",
+  "type":"module",
+  "scripts":{"dev":"vite","build":"vite build","preview":"vite preview","dev:vercel":"vercel dev"},
+  "dependencies":{
+    "@vitejs/plugin-react":"latest","react":"latest","react-dom":"latest",
+    "react-router-dom":"latest","nodemailer":"latest","mongoose":"latest"
+  },
+  "devDependencies":{"vite":"latest"}
+}
